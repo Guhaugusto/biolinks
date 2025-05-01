@@ -4,11 +4,11 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\MakeLoginRequest;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use illuminate\Support\Facades\Hash;
-
 use function Laravel\Prompts\password;
 
 class LoginController extends Controller
@@ -18,25 +18,16 @@ class LoginController extends Controller
         return view('auth.login');
     }
 
-    public function login(Request $request)
+    public function login(MakeLoginRequest $request)
 {
 
-    request()->validate([
-        'email' =>['required', 'email'],
-        'password' => ['required'],      
-    ]);
-    
+    if ($request->Attempt()){
 
-    $credentials = $request->only('email', 'password');
+        return to_route('dashboard');
 
-    if (Auth::attempt($credentials)) {
-        $request->session()->regenerate();
-        return redirect()->route('dashboard');
     }
 
-     return back()->with([
-        'mesagem' => 'Credenciais inválidas.',
-    ]);
+    return back()->with(['message' => 'não deu certo!!']);
 
 }
 }

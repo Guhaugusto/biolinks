@@ -1,7 +1,7 @@
 <div>
     <h1>Login</h1>
 
-    @if($message = session()->get('mesagem'))
+    @if($message = session()->get('message'))
     <div>{{ $message}}</div>
     @endif
 
