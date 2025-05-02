@@ -27,7 +27,7 @@ class LoginController extends Controller
 
     }
 
-    return back()->with(['message' => 'não deu certo!!']);
+    return back()->with(['messagem' => 'não deu certo!!']);
 
 }
 }

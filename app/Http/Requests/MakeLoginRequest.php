@@ -35,8 +35,8 @@ class MakeLoginRequest extends FormRequest
     public function rules(): array
     {
         return [
-           'email' =>['required', 'email'],
-        'password' => ['required'],
+            'email' => ['required', 'email'],
+            'password' => ['required'],
         ];
     }
 
@@ -45,17 +45,17 @@ class MakeLoginRequest extends FormRequest
      * Attemp to login in the system
      *  
      * @return bollean 
-    */
+     */
 
     public function attempt(): bool
     {
         $credentials = $this->only('email', 'password');
-    
+
         if (Auth::attempt($credentials)) {
             $this->session()->regenerate();
             return true;
         }
-    
+
         return false;
     }
 }

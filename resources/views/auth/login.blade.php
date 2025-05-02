@@ -1,12 +1,15 @@
 <div>
+
+{{ auth()->id() }}
+
     <h1>Login</h1>
 
-    @if($message = session()->get('message'))
+    @if($message = session()->get('messagem'))
     <div>{{ $message}}</div>
     @endif
 
     <div>
-       <form action="/login" method="post">
+       <form action="{{ route('login') }}" method="post">
         @csrf
     <div> 
 
