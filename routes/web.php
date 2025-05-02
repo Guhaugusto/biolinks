@@ -4,6 +4,7 @@ use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\LogoutController;
 use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\LinkController;
+use App\Http\Controllers\DashboardController;
 use GuzzleHttp\Promise\Create;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
@@ -34,7 +35,7 @@ Route::middleware('auth')->group(function () {
 
     Route::get('/logout', LogoutController::class)->name('logout');
 
-    Route::get('/dashboard', fn() => 'Dashboard :: ' . Auth::id())->name('dashboard');
+    Route::get('/dashboard', DashboardController::class,)->name('dashboard');
 
     
 

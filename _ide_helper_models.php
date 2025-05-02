@@ -1,13 +1,46 @@
 <?php
 
-namespace App\Models;
-
-// use Illuminate\Contracts\Auth\MustVerifyEmail;
-use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Foundation\Auth\User as Authenticatable;
-use Illuminate\Notifications\Notifiable;
-
+// @formatter:off
+// phpcs:ignoreFile
 /**
+ * A helper file for your Eloquent Models
+ * Copy the phpDocs from this file to the correct Model,
+ * And remove them from this file, to prevent double declarations.
+ *
+ * @author Barry vd. Heuvel <barryvdh@gmail.com>
+ */
+
+
+namespace App\Models{
+/**
+ * 
+ *
+ * @property int $id
+ * @property string $link
+ * @property string $name
+ * @property int $user_id
+ * @property \Illuminate\Support\Carbon|null $created_at
+ * @property \Illuminate\Support\Carbon|null $updated_at
+ * @method static \Database\Factories\LinkFactory factory($count = null, $state = [])
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Link newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Link newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Link query()
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Link whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Link whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Link whereLink($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Link whereName($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Link whereUpdatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Link whereUserId($value)
+ * @mixin \Eloquent
+ */
+	#[\AllowDynamicProperties]
+	class IdeHelperLink {}
+}
+
+namespace App\Models{
+/**
+ * 
+ *
  * @property int $id
  * @property string $name
  * @property string $email
@@ -31,41 +64,8 @@ use Illuminate\Notifications\Notifiable;
  * @method static \Illuminate\Database\Eloquent\Builder<static>|User whereRememberToken($value)
  * @method static \Illuminate\Database\Eloquent\Builder<static>|User whereUpdatedAt($value)
  * @mixin \Eloquent
- * @mixin IdeHelperUser
- * @property int $id
  */
-class User extends Authenticatable
-{
-    /** @use HasFactory<\Database\Factories\UserFactory> */
-    use HasFactory, Notifiable;
-
-
-    /**
-     * The attributes that should be hidden for serialization.
-     *
-     * @var list<string>
-     */
-    protected $hidden = [
-        'password',
-        'remember_token',
-    ];
-
-    /**
-     * Get the attributes that should be cast.
-     *
-     * @return array<string, string>
-     */
-    protected function casts(): array
-    {
-        return [
-            'email_verified_at' => 'datetime',
-            'password' => 'hashed',
-        ];
-    }
-
-
-    public function links(){
-
-        return $this->hasMany(Link::class);
-    }
+	#[\AllowDynamicProperties]
+	class IdeHelperUser {}
 }
+

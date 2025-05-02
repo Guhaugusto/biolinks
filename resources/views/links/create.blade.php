@@ -23,6 +23,7 @@
                 @enderror
 
             </div>
+            <br>
 
             <div>
 
@@ -35,6 +36,7 @@
                 @enderror
 
             </div>
+            <br>
 
             <button>Salvar</button>
 
