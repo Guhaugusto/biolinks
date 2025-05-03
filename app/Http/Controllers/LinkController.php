@@ -4,9 +4,10 @@ namespace App\Http\Controllers;
 
 use App\Models\Link;
 use Illuminate\Http\Request;
-use App\Http\Requests\UpdateLinkRequest;
-use App\Http\Requests\StoreLinkRequest;
+use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
+use App\Http\Requests\StoreLinkRequest;
+use App\Http\Requests\UpdateLinkRequest;
 
 class LinkController extends Controller
 {
@@ -45,24 +46,37 @@ class LinkController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Link $link)
+    public function edit( link $link)
     {
-        //
+       return view('links.edit', compact('link'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Link $link)
+    public function update(UpdateLinkRequest $request, Link $link)
     {
-        //
+      $link->link = $request->link;
+      $link->name = $request->name;
+      $link->save();
+
+
+
+      return to_route('dashboard')
+      ->with('messagem', 'Alterado com sucessso👌');
+
+
+     
     }
+    
 
     /**
      * Remove the specified resource from storage.
      */
     public function destroy(Link $link)
     {
-        //
+        $link->delete();
+        return to_route('dashboard')
+        ->with('messagem', 'Deletado com sucessso🗑️');
     }
 }

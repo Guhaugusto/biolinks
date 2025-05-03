@@ -1,17 +1,18 @@
 <?php
 
-use App\Http\Controllers\Auth\LoginController;
-use App\Http\Controllers\Auth\LogoutController;
-use App\Http\Controllers\Auth\RegisterController;
+use function Pest\Laravel\get;
+use GuzzleHttp\Promise\Create;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\LinkController;
 use App\Http\Controllers\DashboardController;
-use GuzzleHttp\Promise\Create;
-use Illuminate\Support\Facades\Route;
-use Illuminate\Support\Facades\Auth;
+use App\Http\Controllers\Auth\LoginController;
+use App\Http\Controllers\Auth\LogoutController;
 
 
 
-use function Pest\Laravel\get;
+
+use App\Http\Controllers\Auth\RegisterController;
 
 Route::get('/', function () {
     return view('welcome');
@@ -38,9 +39,19 @@ Route::middleware('auth')->group(function () {
     Route::get('/dashboard', DashboardController::class,)->name('dashboard');
 
     
+    
 
     Route::get('/links/create', [LinkController::class, 'create'])->name('links.create');
 
     Route::post('/links/create', [LinkController::class, 'store']);
+
+    Route::get('/links/{link}/edit', [LinkController::class, 'edit'])->name('links.edit');
+    
+    Route::put('/links/{link}/edit', [LinkController::class, 'update']);
+
+    Route::delete('/links{link}', [LinkController::class, 'destroy'])->name('links.destroy');
+
+
+
 
 });

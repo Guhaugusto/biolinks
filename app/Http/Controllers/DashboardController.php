@@ -11,11 +11,14 @@ class DashboardController extends Controller
     public function __invoke()
   
     {
-/** @var User $user */
+/** @var user $user */
+
         $user = auth()->user();
 
-        dd($user->with('links'));
 
-        return view('dashboard'); 
+        return view('dashboard',[
+        'links' => $user->links,
+
+    ]); 
     }
 }

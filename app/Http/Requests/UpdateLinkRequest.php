@@ -5,7 +5,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class StoreLinkRequest extends FormRequest
+class UpdateLinkRequest extends FormRequest
 {
 
 
