@@ -1,3 +1,4 @@
+<x-layout.app>
 <div>
 
  
@@ -28,3 +29,4 @@
     </ul>
 
 </div>
+</x-layout.app>

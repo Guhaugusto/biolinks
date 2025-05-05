@@ -1,3 +1,4 @@
+<x-layout.app>
 <div>
 
     <h1>Deshboard</h1>
@@ -55,3 +56,4 @@
     </ul>
 
 </div>
+</x-layout.app>

@@ -1,44 +1,51 @@
-<div>
+<x-layout.app>
 
-{{ auth()->id() }}
+    <div class="mx-auto max-w-screen-md flex items-center justify-center py-20">
+        <div class="card bg-base-100 w-96 shadow-sm ">
 
-    <h1>Login</h1>
+            <div class="card-body">
 
-    @if($message = session()->get('messagem'))
-    <div>{{ $message}}</div>
-    @endif
+                <h1 class="card-title">Login</h1>
 
-    <div>
-       <form action="{{ route('login') }}" method="post">
-        @csrf
-    <div> 
 
-    <input type="text" name="email" placeholder="Email" value="{{ old('email') }}" />
+                <div>
+                    <form action="{{ route('login') }}" method="post" id="login-form">
+                        @csrf
+                        <div class="">
 
-    @error('email')
+                            <input class="input" type="text" name="email" placeholder="Email" value="{{ old('email') }}" />
 
-    <span>{{ $message }}</span>
+                            @error('email')
 
-        @enderror
+                            <div class="text-sm text-error">{{ $message }}</div>
 
+                            @enderror
+
+                        </div>
+
+                        <br>
+
+                        <div>
+                            <input class="input" type="password" name="password" placeholder="Senha" />
+
+                            @error('password')
+
+                            <div class="text-sm text-error">{{ $message }}</div>
+
+                            @enderror
+                        </div>
+                        <br>
+                        <div class="card-actions">
+                        <button class="btn btn-primary" type="submit" form="login-form">Logar</button>
+                        </div>
+                       
+
+                    </form>
+
+                </div>
+
+            </div>
+
+        </div>
     </div>
-
-    <br>
-
-    <div>
-    <input type="password" name="password" placeholder="Senha" />
-
-    @error('password')
-
-    <span>{{ $message }}</span>
-
-        @enderror
-</div>
-    <br>
-    <button>Logar</button>
-
-       </form>
- 
-    </div>
-
-</div>
+</x-layout.app>

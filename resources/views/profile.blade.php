@@ -1,3 +1,4 @@
+<x-layout.app>
 <div>
 
     <h1>Profile</h1>
@@ -71,3 +72,4 @@
          </div>
 
         </div>
+</x-layout.app>

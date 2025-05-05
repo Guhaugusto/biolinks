@@ -1,3 +1,4 @@
+<x-layout.app>
 <div>
 
     <h1>Criar um link</h1>
@@ -45,3 +46,4 @@
     </div>
 
 </div>
+</x-layout.app>
