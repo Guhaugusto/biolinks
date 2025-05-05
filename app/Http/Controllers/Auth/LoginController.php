@@ -5,11 +5,7 @@ namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\MakeLoginRequest;
-use App\Models\User;
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
-use illuminate\Support\Facades\Hash;
-use function Laravel\Prompts\password;
+
 
 class LoginController extends Controller
 {

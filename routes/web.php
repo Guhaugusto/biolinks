@@ -1,13 +1,11 @@
 <?php
 
-use function Pest\Laravel\get;
-use GuzzleHttp\Promise\Create;
-use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\LinkController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\LogoutController;
+use \App\Http\Controllers\ProfileController;
 
 
 
@@ -54,4 +52,7 @@ Route::middleware('auth')->group(function () {
     Route::patch('/links/{link}/up', [LinkController::class, 'up'])->name('links.up');
 
     Route::patch('/links/{link}/down', [LinkController::class, 'down'])->name('links.down');
+
+    Route::get('/profile', [ProfileController::class, 'index'])->name('profile');
+    Route::put('/profile', [ProfileController::class, 'update']);
 });

@@ -2,12 +2,9 @@
 
 namespace App\Http\Requests;
 
-use App\Http\Controllers\Controller;
-use App\Models\User;
-use Illuminate\Http\Request;
+
 use Illuminate\Support\Facades\Auth;
-use illuminate\Support\Facades\Hash;
-use function Laravel\Prompts\password;
+
 use Illuminate\Foundation\Http\FormRequest;
 
 

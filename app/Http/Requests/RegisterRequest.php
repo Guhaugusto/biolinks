@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use App\Models\User;
 use Illuminate\Foundation\Http\FormRequest;
-use App\Http\Controllers\Controller;
+
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Validation\Rules\Password;
 use Illuminate\Validation\Rules\Unique;

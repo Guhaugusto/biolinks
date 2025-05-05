@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 use App\Models\User;
 use App\Models\Link;
-use Illuminate\Http\Request;
+
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Requests\StoreLinkRequest;
@@ -50,6 +50,12 @@ class LinkController extends Controller
    */
   public function edit(link $link)
   {
+    if ($link->user_id !== auth::id()) {
+      return redirect()->route('dashboard')
+        ->with('messagem', 'Você não tem permissão para editar este link.');
+    }
+    
+ 
     return view('links.edit', compact('link'));
   }
 
@@ -58,6 +64,9 @@ class LinkController extends Controller
    */
   public function update(UpdateLinkRequest $request, Link $link)
   {
+   
+
+
     $link->link = $request->link;
     $link->name = $request->name;
     $link->save();

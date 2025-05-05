@@ -1,10 +1,14 @@
 <div>
 
-    <h1>Olaa</h1>
+    <h1>Deshboard</h1>
 
+
+   
     @if($message = session()->get('messagem'))
     <div>{{ $message}}</div>
     @endif
+    
+    <a href="{{ route('profile') }}">Editar perfil</a>
 
     <a href="{{ route('links.create') }}">Cria um novo</a>
     <ul>
