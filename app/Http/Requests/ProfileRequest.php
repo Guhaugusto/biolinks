@@ -2,14 +2,21 @@
 
 namespace App\Http\Requests;
 
+use App\Rules\ChekeHandeler;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Validation\Rule;
+use Illuminate\Foundation\Http\UploadedFile;
+
+
+
+    /**
+     * @property-read UploadedFile  $photo
+     */
 
 class ProfileRequest extends FormRequest
 {
-    /**
-     * Determine if the user is authorized to make this request.
-     */
+
+    
     public function authorize(): bool
     {
         return true;
@@ -25,9 +32,13 @@ class ProfileRequest extends FormRequest
         return [
             'name' => ['required', 'MIN:3', 'MAX:30'],
             'description' => ['nullable'],
+            'photo' => ['nullable', 'image'],
             'handler' => ['required', 
             Rule::unique('users')->ignoreModel($this->user()),
+
+            new ChekeHandeler
         ],
         ];
+        
     }
 }

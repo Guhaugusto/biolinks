@@ -2,13 +2,14 @@
 
     <h1>Deshboard</h1>
 
-
+    <h2>User {{ auth()->user()->name }} :: {{ auth()->id() }}</h2>
+    
+    <a href="{{ route('profile') }}">Editar perfil</a>
+    
    
     @if($message = session()->get('messagem'))
     <div>{{ $message}}</div>
     @endif
-    
-    <a href="{{ route('profile') }}">Editar perfil</a>
 
     <a href="{{ route('links.create') }}">Cria um novo</a>
     <ul>
@@ -39,7 +40,7 @@
             </form>
             @endif
 
-            <a href="{{ route('links.edit', $link) }}"> {{ $link->name }}</a>
+            <a href="{{ route('links.edit', $link) }}"> {{ $link->id }}. {{ $link->name }}</a>
 
             <form action="{{ route('links.destroy', $link) }}" method="post" onsubmit="return confirm('Tem certeza?')">
                 @csrf

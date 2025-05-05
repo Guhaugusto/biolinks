@@ -11,6 +11,7 @@ use \App\Http\Controllers\ProfileController;
 
 
 use App\Http\Controllers\Auth\RegisterController;
+use App\Http\Controllers\BioLinkcontroller;
 
 Route::get('/', function () {
     return view('welcome');
@@ -55,4 +56,7 @@ Route::middleware('auth')->group(function () {
 
     Route::get('/profile', [ProfileController::class, 'index'])->name('profile');
     Route::put('/profile', [ProfileController::class, 'update']);
+
 });
+
+Route::get('/{user:handler}', BioLinkcontroller::class);
