@@ -74,7 +74,7 @@ class LinkController extends Controller
 
 
     return to_route('dashboard')
-      ->with('messagem', 'Alterado com sucessso👌');
+      ->with('messagem', 'updated successfully✅');
   }
 
 

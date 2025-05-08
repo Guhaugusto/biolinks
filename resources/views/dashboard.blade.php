@@ -1,59 +1,75 @@
 <x-layout.app>
-<div>
 
-    <h1>Deshboard</h1>
+    <x-container>
 
-    <h2>User {{ auth()->user()->name }} :: {{ auth()->id() }}</h2>
-    
-    <a href="{{ route('profile') }}">Editar perfil</a>
-    
-   
-    @if($message = session()->get('messagem'))
-    <div>{{ $message}}</div>
-    @endif
+        <div class="text-center space-y-4">
 
-    <a href="{{ route('links.create') }}">Cria um novo</a>
-    <ul>
-        @foreach ( $links as $link)
+            <x-img src="/storage/{{ $user->photo }}" alt="Profile picture" />
 
-        <li style="display:flex; ">
+            <div class="font-bold text-2xl tracking-wider">{{ $user->name }}</div>
 
-            @if(!$loop->last)
-
-            <form action="{{ route('links.down', $link) }}" method="post">
-                @csrf
-                @method('PATCH')
-
-                <button>⬇️</button>
-            </form>
-            @endif
-
-            @if (!$loop->first)
+            <div class="text-sm  opacity-80">{{ $user->description }}</div>
 
 
+            <ul class="space-y-3">
+                @foreach ( $links as $link)
+
+                <li class="flex items-center gap-2">
 
 
-            <form action="{{ route('links.up', $link) }}" method="post">
-                @csrf
-                @method('PATCH')
+                    @if(!$loop->last)
 
-                <button>⬆️</button>
-            </form>
-            @endif
+                    <x-form :route=" route('links.down', $link) " patch>
 
-            <a href="{{ route('links.edit', $link) }}"> {{ $link->id }}. {{ $link->name }}</a>
+                        <x-button ghost>
+                            <x-icons.arrow-down class="h-6 w-6" />
+                        </x-button>
+                    </x-form>
+                    @else
+                    <x-button disabled ghost>
+                        <x-icons.arrow-down class="h-6 w-6" />
+                </x-button>
+                    @endif
 
-            <form action="{{ route('links.destroy', $link) }}" method="post" onsubmit="return confirm('Tem certeza?')">
-                @csrf
-                @method('DELETE')
+                    @if (!$loop->first)
 
-                <button>Deletar</button>
-            </form>
+                    <form :route=" route('links.up', $link)" patch>
 
-        </li>
+                        <x-button ghost>
+                            <x-icons.arrow-up class="h-6 w-6" />
+                        </x-button>
+                    </form>
+                    @else
+                    <x-button disabled ghost>
+                        <x-icons.arrow-up class="h-6 w-6" />
+                </x-button>
 
-        @endforeach
-    </ul>
+                    @endif
 
-</div>
+
+
+
+                    <x-button href="{{ route('links.edit', $link) }}" block soft primary>
+
+                        {{ $link->name }}
+
+                    </x-button>
+
+                    <x-form :route="route('links.destroy', $link)" delete onsubmit="return confirm('Tem certeza?')">
+
+                        <x-button ghost>
+                            <x-icons.trash class="h-6 w-6" />
+                        </x-button>
+
+                    </x-form>
+
+                </li>
+
+                @endforeach
+            </ul>
+        </div>
+
+    </x-container>
+
 </x-layout.app>
+

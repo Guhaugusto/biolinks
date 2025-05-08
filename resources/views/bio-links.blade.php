@@ -2,7 +2,7 @@
 <div>
 
  
-    <img src="/storage/{{ $user->photo }}" alt="photo profile">    
+    <x-img src="/storage/{{ $user->photo }}" alt="photo profile"/>    
 
     <h2>User {{ $user->name }} :: {{ $user->id }}</h2>
     

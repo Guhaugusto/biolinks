@@ -1,0 +1,24 @@
+@props(['title' => null, 'actions' => null])
+
+<div class="card bg-base-100 w-2/3  mt-6 shadow-sm ">
+
+    <div class="card-body ">
+
+
+        @if ($title)
+        <div class="card-title flex mt-3">{{$title}}</div>
+        @endif
+
+        {{ $slot }}
+
+
+        @if ($actions)
+        <div class="card-actions flex items-center justify-between mt-6  ">
+
+            {{ $actions }}
+
+            @endif
+
+        </div>
+    </div>
+</div>

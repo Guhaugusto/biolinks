@@ -1,51 +1,27 @@
 <x-layout.app>
 
-    <div class="mx-auto max-w-screen-md flex items-center justify-center py-20">
-        <div class="card bg-base-100 w-96 shadow-sm ">
+    <x-container>
 
-            <div class="card-body">
+        <x-card title="Login">
 
-                <h1 class="card-title">Login</h1>
+            <x-form :route="route('login')" post id="login-form">
 
+                <x-input name="email" placeholder="Email" value="{{ old('email') }}" />
 
-                <div>
-                    <form action="{{ route('login') }}" method="post" id="login-form">
-                        @csrf
-                        <div class="">
+                <x-input name="password" type="password" placeholder="Senha" />
 
-                            <input class="input" type="text" name="email" placeholder="Email" value="{{ old('email') }}" />
+                </x-form>
 
-                            @error('email')
+                <x-slot:actions>
 
-                            <div class="text-sm text-error">{{ $message }}</div>
+                <x-a href="/register">I want to create an account!</x-a>
 
-                            @enderror
+                <x-button type="submit" form="login-form">Logar</x-button>
 
-                        </div>
+                    </x-slot:actions>
 
-                        <br>
+        </x-card>
 
-                        <div>
-                            <input class="input" type="password" name="password" placeholder="Senha" />
+    </x-container>
 
-                            @error('password')
-
-                            <div class="text-sm text-error">{{ $message }}</div>
-
-                            @enderror
-                        </div>
-                        <br>
-                        <div class="card-actions">
-                        <button class="btn btn-primary" type="submit" form="login-form">Logar</button>
-                        </div>
-                       
-
-                    </form>
-
-                </div>
-
-            </div>
-
-        </div>
-    </div>
 </x-layout.app>
