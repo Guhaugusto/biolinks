@@ -21,9 +21,7 @@
 
                 <li class="flex items-center justify-center gap-2">
 
-
                     @if(!$loop->last)
-
                     <x-form :route=" route('links.down', $link)" patch>
                         <x-button ghost>
                             <x-icons.arrow-down class="h-6 w-6" />
@@ -34,6 +32,9 @@
                         <x-icons.arrow-down class="h-6 w-6" />
                     </x-button>
                     @endif
+
+
+
                     @if (!$loop->first)
                     <form method="POST" action="{{ route('links.up', $link) }}">
                         @csrf
@@ -47,6 +48,7 @@
                         <x-icons.arrow-up class="h-6 w-6" />
                     </x-button>
                     @endif
+
 
 
 
