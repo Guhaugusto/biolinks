@@ -13,7 +13,7 @@ use \App\Http\Controllers\ProfileController;
 use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\BioLinkcontroller;
 
-Route::get('/', function () {
+Route::get('/dashboard', function () {
     return view('welcome');
 });
 

@@ -61,21 +61,13 @@ class LinkController extends Controller
 
   /**
    * Update the specified resource in storage.
-   */
-  public function update(UpdateLinkRequest $request, Link $link)
-  {
-   
+   */public function update(UpdateLinkRequest $request, Link $link)
+{
+  $link->update($request->only(['link', 'name']));
 
-
-    $link->link = $request->link;
-    $link->name = $request->name;
-    $link->save();
-
-
-
-    return to_route('dashboard')
-      ->with('messagem', 'updated successfully✅');
-  }
+  return to_route('dashboard')
+      ->with('message', 'Updated successfully ✅');
+}
 
 
   /**

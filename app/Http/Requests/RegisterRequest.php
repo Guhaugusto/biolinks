@@ -38,16 +38,12 @@ class RegisterRequest extends FormRequest
         return
             [
                 'name' => ['required', 'string'],
-                'email' => ['required', 'email', 'confirmed', 'unique:users'],
+                'email' => ['required', 'email',  'unique:users'],
                 'password' => ['required', Password::default()]
             ];
     }
 
     public function tryToRegister() {
-
-
-       
-
         
        $user = User::query()->create($this->validated());
         

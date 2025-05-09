@@ -6,6 +6,7 @@ use Illuminate\Http\UploadedFile;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Requests\ProfileRequest;
+use App\Models\User;
 
 
 class ProfileController extends Controller
@@ -13,32 +14,32 @@ class ProfileController extends Controller
 
     public function index()
     {
-        return view('profile',
+        return view(
+            'profile',
             [
                 'user' => auth::user()
-               
+
             ]
         );
-
     }
-    public function update( ProfileRequest $request)
+    public function update(ProfileRequest $request)
     {
-        $user = auth::user();
+        /** @var \App\Models\User $user */
+        $user = Auth::user();
 
         $data = $request->validated();
 
-         /** @var  UploadedFile*/  
+        /** @var UploadedFile $file */
 
-      if(  $file = $request->photo){
+        if ($request->hasFile('photo')) {
+            $data['photo'] = $request->file('photo')->store('photos');
+        }
 
-        $data['photo'] = $file->store('photos');
-      }
-      
+
 
 
         $user->fill($data)->save();
-        return back()
-            ->with('menssagem', 'Profile atualizado com sucesso');
-        
+        return to_route('dashboard')
+            ->with('message', 'Profile atualizado com sucesso');
     }
 }

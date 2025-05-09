@@ -1,32 +1,37 @@
 <x-layout.app>
-<div>
 
- 
-    <x-img src="/storage/{{ $user->photo }}" alt="photo profile"/>    
+    <x-container>
+       
+        <div class="text-center space-y-4 ">
 
-    <h2>User {{ $user->name }} :: {{ $user->id }}</h2>
-    
-   
-    <h3> {{ $user->description }}</h3>
-   
+            <x-img src="/storage/{{ $user->photo }}" alt="Profile picture" />
 
-  
-    <ul>
-        @foreach ( $user->links as $link)
+            <div class="font-bold text-2xl tracking-wider">{{ $user->name }}</div>
 
-        <li>
+            <div class="text-sm  opacity-80">{{ $user->description }}</div>
 
-           
+            <ul class="space-y-3">
+                @foreach ( $user->links as $link)
 
-            <a href="{{ $link->link}}" target="_blank"> {{ $link->id }}. {{ $link->name }}
+                <li class="flex items-center justify-center gap-2">
 
-            </a>
+               <x-button href="{{ $link->link }}" block soft primary targert="_blank" >
 
+                        {{ $link->name }}
 
-        </li>
+                    </x-button>
 
-        @endforeach
-    </ul>
+                    <x-form :route="route('links.destroy', $link)" delete onsubmit="return confirm('Tem certeza?')">
 
-</div>
+            
+                    </x-form>
+
+                </li>
+
+                @endforeach
+            </ul>
+        </div>
+
+    </x-container>
+
 </x-layout.app>

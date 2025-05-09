@@ -1,8 +1,13 @@
 <x-layout.app>
 
     <x-container>
+        <div class="absolute top-8 left-8 flex flex-col gap-4">
+            <x-button ghost :href="route('profile')">Update Profile</x-button>
+            <x-button ghost :href="route('links.create')">Create link</x-button>
+            <x-button ghost :href="route('logout')">Logout</x-button>
+        </div>
 
-        <div class="text-center space-y-4">
+        <div class="text-center space-y-4 ">
 
             <x-img src="/storage/{{ $user->photo }}" alt="Profile picture" />
 
@@ -14,13 +19,12 @@
             <ul class="space-y-3">
                 @foreach ( $links as $link)
 
-                <li class="flex items-center gap-2">
+                <li class="flex items-center justify-center gap-2">
 
 
                     @if(!$loop->last)
 
-                    <x-form :route=" route('links.down', $link) " patch>
-
+                    <x-form :route=" route('links.down', $link)" patch>
                         <x-button ghost>
                             <x-icons.arrow-down class="h-6 w-6" />
                         </x-button>
@@ -28,13 +32,12 @@
                     @else
                     <x-button disabled ghost>
                         <x-icons.arrow-down class="h-6 w-6" />
-                </x-button>
+                    </x-button>
                     @endif
-
                     @if (!$loop->first)
-
-                    <form :route=" route('links.up', $link)" patch>
-
+                    <form method="POST" action="{{ route('links.up', $link) }}">
+                        @csrf
+                        @method('PATCH')
                         <x-button ghost>
                             <x-icons.arrow-up class="h-6 w-6" />
                         </x-button>
@@ -42,8 +45,7 @@
                     @else
                     <x-button disabled ghost>
                         <x-icons.arrow-up class="h-6 w-6" />
-                </x-button>
-
+                    </x-button>
                     @endif
 
 
@@ -72,4 +74,3 @@
     </x-container>
 
 </x-layout.app>
-

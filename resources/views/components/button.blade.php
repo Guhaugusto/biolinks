@@ -18,7 +18,7 @@ $tag = $href ? 'a' : 'button';
 
     {{ $attributes->class([
     'btn btn-primary',
-    'btn-block' => $block,
+    'btn-wide' => $block,
     'btn-soft' => $soft,
     'btn-primary' => $primary,
     'btn-ghost' => $ghost,

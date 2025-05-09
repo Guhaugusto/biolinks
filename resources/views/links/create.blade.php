@@ -4,13 +4,11 @@
 
         <x-card title="Create a new Link">
 
-            <x-form :route="route('links.create')" post id="create-form">
+            <x-form :route="route('links.create')" post id="form">
 
                 <x-input type="text" name="name" placeholder="Name" value="{{ old('name') }}" />
 
                 <x-input type="text" name="link" placeholder="Link" value="{{ old('link') }}" />
-
-
 
             </x-form>
 
